@@ -1,9 +1,11 @@
+# 2. For every person under the age of 18, set "sex" column value to be "child"
+
 import pandas as pd
 
 df = pd.read_csv('titanic.csv')
 
 # df['Child'] = df[df['Age'] < 18]
-df['Child'] = df['Sex'].apply(lambda x: 'Child' if df['Age'] < 18 else 'Sex')
+df['Sex'] = df.apply(lambda row: 'Child' if row['Age'] < 18 else row['Sex'], axis=1)
 
-print(df.columns)
+print(df['Sex'])
 

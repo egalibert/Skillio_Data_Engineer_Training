@@ -1,3 +1,5 @@
+# 1. Rename columns not to have any whitespaces or special characters.
+
 import pandas as pd
 
 df = pd.read_csv('titanic.csv')

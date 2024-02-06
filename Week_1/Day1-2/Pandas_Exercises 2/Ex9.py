@@ -1,3 +1,5 @@
+# 9. What is the average fare paid by the people in the dataset from last step?
+
 import pandas as pd
 
 df = pd.read_csv('titanic.csv')

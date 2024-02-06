@@ -1,3 +1,5 @@
+# 3. Create a new dataset which displays the average fare per sex
+
 import pandas as pd
 
 df = pd.read_csv('titanic.csv')

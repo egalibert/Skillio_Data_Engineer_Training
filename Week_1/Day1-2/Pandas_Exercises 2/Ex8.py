@@ -1,3 +1,5 @@
+# 8. Filter off those persons who had both siblings/spouces AND parents/children
+
 import pandas as pd
 
 df = pd.read_csv('titanic.csv')
