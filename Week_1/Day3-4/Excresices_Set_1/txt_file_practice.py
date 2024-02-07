@@ -7,7 +7,7 @@ with open("story.txt", "r") as file:
 for word in word_list:
 	print(word)
 
-sorted_list = sorted(word_list, key=len, reverse=True)
+sorted_list = sorted(word_list, key=len, reverse=True) #False to make shortest to longest
 print(sorted_list)
 
 with open("sortedWords.txt", "w") as file:
