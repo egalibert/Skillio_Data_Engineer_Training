@@ -43,7 +43,7 @@ from datetime import datetime, timedelta
 import random
 import json
 
-## USER DATA
+## USER DATA ##
 # Set seed for reproducibility
 np.random.seed(42)
 
@@ -74,8 +74,7 @@ user_data = {
 user_df = pd.DataFrame(user_data)
 
 # Display the synthetic dataset
-
-## PRODUCT DATA
+## PRODUCT DATA ##
 
 product_data = {
 	'product_id': [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009],
@@ -91,7 +90,7 @@ print("products:", product_df)
 # Print the Product DataFrame
 # print(product_df)
 
-## TRANSACTION DATA
+## TRANSACTION DATA ##
 # Number of transactions
 num_transactions = 100
 
@@ -144,11 +143,8 @@ sorted_topsellers = sorted_topsellers.reset_index()
 
 # print(sorted_topsellers)
 
-######
-
 st_wprice = pd.merge(sorted_topsellers, product_df, on="Product Name")
 mean_price = st_wprice.loc[0:4,['Price']].mean()
-
 
 # grouped_data = df.groupby('Grouping_Column')
 # specific_column_sum = grouped_data['Column_Name'].sum()
