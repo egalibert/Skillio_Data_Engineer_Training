@@ -72,6 +72,7 @@ user_data = {
 }
 
 user_df = pd.DataFrame(user_data)
+print(user_df)
 
 # Display the synthetic dataset
 ## PRODUCT DATA ##
@@ -85,9 +86,6 @@ product_data = {
 
 # Create a product DataFrame
 product_df = pd.DataFrame(product_data)
-print("products:", product_df)
-
-# Print the Product DataFrame
 # print(product_df)
 
 ## TRANSACTION DATA ##
@@ -126,14 +124,14 @@ transaction_df = pd.DataFrame(transaction_data)
 ## MERGE DATA ##
 
 transaction_and_users = pd.merge(user_df, transaction_df, on = "user_id")
-print(transaction_and_users)
+# print(transaction_and_users)
 # print(transaction_and_users.columns)
 
 all_data = pd.merge(transaction_and_users, product_df, on = "product_id")
 all_data["transaction_val"] = all_data["quantity"] * all_data["Price"]
 
 print(all_data)
-print(all_data.columns)
+# print(all_data.columns)
 
 total_spending = all_data.groupby('user_id').sum("transaction_val")
 print(total_spending)
