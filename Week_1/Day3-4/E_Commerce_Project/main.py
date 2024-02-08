@@ -121,8 +121,9 @@ transaction_data = {
 }
 
 transaction_df = pd.DataFrame(transaction_data)
-
 # print(transaction_df)
+
+## MERGE DATA ##
 
 transaction_and_users = pd.merge(user_df, transaction_df, on = "user_id")
 print(transaction_and_users)
@@ -146,11 +147,7 @@ sorted_topsellers = sorted_topsellers.reset_index()
 st_wprice = pd.merge(sorted_topsellers, product_df, on="Product Name")
 mean_price = st_wprice.loc[0:4,['Price']].mean()
 
-# grouped_data = df.groupby('Grouping_Column')
-# specific_column_sum = grouped_data['Column_Name'].sum()
-
 # print(st_wprice)
-#print(st_wprice.loc[0:4,['Price']])
 print(mean_price)
 
 most_popular = all_data.groupby('Category').sum("quantity").sort_values('quantity', ascending=False)
