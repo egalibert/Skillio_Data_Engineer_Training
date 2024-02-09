@@ -7,7 +7,7 @@ cleaned_df = cleaned_df.dropna()
 
 final_df = cleaned_df.groupby(['Category', 'Material']).agg({'Price': 'mean'}).reset_index()
 
-# Rename the calculated column
+# Rename the calculated column, remove one rpw, reset index and remove speacial characters
 final_df.rename(columns={'Price': 'AveragePrice'}, inplace=True)
 final_df = final_df.drop(index=8)
 final_df = final_df.reset_index(drop=True)
