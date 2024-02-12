@@ -85,3 +85,14 @@ WHERE
 	c.region = 'Southeast Asia';
 
 -- ## USING SUBQUERIES
+-- Use the subquery and search for all cities with a larger population than the entire population of Finland.
+SELECT name AS city_name, population
+FROM city
+WHERE population > (SELECT population FROM country WHERE name = 'Finland');
+
+-- Search all cities with over one million inhabitants in a country where English is spoken.
+SELECT city.name AS city_name, city.population
+FROM city
+JOIN countrylanguage ON city.countrycode = country.language.countrycode
+WHERE city.population > 1000000
+  AND countrylanguage.language = 'English';
