@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sports App</title>
+</head>
+<body>
+	<h1>Welcome to the Sports App!</h1>
+
+	<form id="addSportForm">
+		<label for="sportName">Sport Name:</label>
+		<input type="text" id="sportName" name="sportName" required>
+
+		<label for="sportDesc">Sport Description:</label>
+		<input type="text" id="sportDesc" name="sportDesc" required>
+
+		<label for="examplePlayer">Example Player:</label>
+		<input type="text" id="examplePlayer" name="examplePlayer" required>
+
+		<button type="button" onclick="addSport()">Add Sport</button>
+	</form>
+
+	<div id="sportsList">
+		<!-- Display sports list here -->
+	</div>
+
+	<script>
+		// JavaScript function to add a sport
+		function addSport() {
+			var sportName = document.getElementById('sportName').value;
+			var sportDesc = document.getElementById('sportDesc').value;
+			var examplePlayer = document.getElementById('examplePlayer').value;
+
+			fetch('/sports', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					'sport_name': sportName,
+					'sport_description': sportDesc,
+					'example_player': examplePlayer,
+				}),
+			})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				// You can update the UI as needed, for example, by appending the new sport to the list.
+				// For simplicity, you can reload the entire list.
+				fetch('/sports')
+					.then(response => response.json())
+					.then(data => {
+						updateSportsList(data.sports);
+						// Clear the input fields after successful submission
+						document.getElementById('sportName').value = '';
+						document.getElementById('sportDesc').value = '';
+						document.getElementById('examplePlayer').value = '';
+					});
+			});
+		}
+
+		// JavaScript function to update the sports list
+		function updateSportsList(sports) {
+			var sportsListDiv = document.getElementById('sportsList');
+			sportsListDiv.innerHTML = '';
+
+			sports.forEach(function(sport) {
+				var sportDiv = document.createElement('div');
+				sportDiv.innerHTML = '<strong>' + sport.sport_name + '</strong>: ' + sport.sport_description + ', Example Player: ' + sport.example_player;
+				sportsListDiv.appendChild(sportDiv);
+			});
+		}
+
+		// Function to load sports list on page load
+		window.onload = function() {
+			fetch('/sports')
+				.then(response => response.json())
+				.then(data => {
+					updateSportsList(data.sports);
+				});
+		};
+	</script>
+</body>
+</html>
