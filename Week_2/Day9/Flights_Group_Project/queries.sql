@@ -31,6 +31,7 @@ JOIN ticket_flights tf
 			ON f.arrival_airport = ad.airport_code
 GROUP BY t.passenger_name, ad.city
 ORDER BY t.passenger_name ASC;
+limit(100)
 
 
 -- 5.2 Flight ID for the second most expensive flight for each passenger
@@ -65,3 +66,4 @@ FROM (
 	JOIN ticket_flights tf ON t.ticket_no = tf.ticket_no
 ) AS RankedFlights
 WHERE price_rank = 2;
+limit(100)
