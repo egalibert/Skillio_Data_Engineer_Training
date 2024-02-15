@@ -18,20 +18,12 @@
 
 -- 5.1 Running sum of flights taken by each passenger
 
-SELECT
-	t.passenger_name,
-	ad.city,
-	COUNT(t.passenger_name) OVER(PARTITION BY t.passenger_name ORDER BY ad.city DESC) AS flights_per_passenger
-FROM tickets t
-JOIN ticket_flights tf
-	ON t.ticket_no = tf.ticket_no
-	JOIN flights f
-		ON tf.flight_id = f.flight_id
-		JOIN airports_data ad
-			ON f.arrival_airport = ad.airport_code
-GROUP BY t.passenger_name, ad.city
-ORDER BY t.passenger_name ASC;
-limit(100)
+SELECT t.passenger_name, ad.city, SUM(1) OVER(PARTITION BY t.passenger_name, ad.city ORDER BY f.scheduled_departure) running_flights
+FROM flights f
+JOIN airports ad ON f.departure_airport = ad.airport_code
+JOIN ticket_flights tf ON f.flight_id = tf.flight_id
+JOIN tickets t ON tf.ticket_no = t.ticket_no
+LIMIT 50;
 
 
 -- 5.2 Flight ID for the second most expensive flight for each passenger
