@@ -7,3 +7,12 @@ pg_dump -U postgres, -h localhost, -d skillio -f skillio_dump.sql
 
 # Push dump file into database
 psql -h eg-demo-server.postgres.database.azure.com -p 5432 --dbname=skillio -U egalibert -f skillio_dump.sql
+
+
+4.
+
+Downloaded azure cli 64.bit
+az login to connect
+
+# Create a new storage from CLI directly
+az storage account create -n elliotstoragecli -g EGstorage1 -l northeurope
