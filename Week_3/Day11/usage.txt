@@ -9,10 +9,22 @@ pg_dump -U postgres, -h localhost, -d skillio -f skillio_dump.sql
 psql -h eg-demo-server.postgres.database.azure.com -p 5432 --dbname=skillio -U egalibert -f skillio_dump.sql
 
 
-4.
+3.1 and 3.2
 
 Downloaded azure cli 64.bit
 az login to connect
 
 # Create a new storage from CLI directly
 az storage account create -n elliotstoragecli -g EGstorage1 -l northeurope
+
+3.3 List storage accounts
+"az storage account list --resource-group YourResourceGroup"
+
+
+3.4 YourResourceGroup
+
+"az storage account show --name YourStorageAccountName --resource-group YourResourceGroup"
+
+3.5 Delete Storage account
+
+"az storage account delete --name YourStorageAccountName --resource-group YourResourceGroup"
