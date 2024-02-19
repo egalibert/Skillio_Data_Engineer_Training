@@ -1,0 +1,9 @@
+
+# Connect to the database for first time
+psql -h eg-demo-server.postgres.database.azure.com -p 5432 --dbname=postgres -U egalibert
+
+# Create a dump from skillio database from local database
+pg_dump -U postgres, -h localhost, -d skillio -f skillio_dump.sql
+
+# Push dump file into database
+psql -h eg-demo-server.postgres.database.azure.com -p 5432 --dbname=skillio -U egalibert -f skillio_dump.sql
